@@ -1,0 +1,5 @@
+1. User should able to upload video. 
+2. Don't allow user to upload invalid format (e.g. : jpg, png)
+3. As a user i want nice looking webapp.
+4. As a user, I should able to view 'video' in all browsers.
+4.1. To support all browsers : Developer should support the following video formars Mp4 and webm.
