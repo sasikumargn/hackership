@@ -21,7 +21,6 @@ class VideosController < ApplicationController
 
   # POST /videos
   def create
-    binding.pry
     @video = Video.new(video_params)
 
     if @video.save

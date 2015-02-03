@@ -1,60 +1,59 @@
 require 'rails_helper'
 
 RSpec.describe VideosController, :type => :controller do
-  setup do
-    @video = videos(:one)
-  end
 
-  # test "should get index" do
-  #   # get :index
-  #   # assert_response :success
-  #   # assert_not_nil assigns(:videos)
-  # end
-
+  let(:video) {FactoryGirl.create(:video)}
+  let(:valid_attributes){ FactoryGirl.attributes_for(:video) }
 
   describe "GET index" do
-
     it "should show all videos" do
       get :index
       assert_response :success
       expect(assigns(:videos)).to be_empty
+      expect(response.code).to eq("200")
     end
+  end
 
-end
+  describe "GET new" do
+    it "should get new" do
+      get :new
+      assert_response :success
+    end
+  end
 
-  # test "should get new" do
-  #   get :new
-  #   assert_response :success
-  # end
+  describe "POST create" do
+    it "should create video" do
+      expect { post :create, video: valid_attributes }.to change { Video.count }
+      expect(response).to redirect_to(video_path(assigns(:video)))
+    end
+  end
 
-  # test "should create video" do
-  #   assert_difference('Video.count') do
-  #     post :create, video: { video_file: @video.video_file }
-  #   end
+  describe "GET show" do
+    it "should show video" do
+      get :show, id: video
+      assert_response :success
+    end
+  end
 
-  #   assert_redirected_to video_path(assigns(:video))
-  # end
+  describe "GET edit" do
+    it "should get edit video" do
+      get :edit, id: video
+      assert_response :success
+    end
+  end
 
-  # test "should show video" do
-  #   get :show, id: @video
-  #   assert_response :success
-  # end
+  describe "PATCH update" do
+    it "should update video" do
+      patch :update, id: video, video: valid_attributes
+      expect(response).to redirect_to(video_path(assigns(:video)))
+    end
+  end
 
-  # test "should get edit" do
-  #   get :edit, id: @video
-  #   assert_response :success
-  # end
+  describe "DELETE destroy" do
+    it "should delete video" do
+      delete :destroy, id: video
+      expect(response).to redirect_to(videos_path)
+    end
+  end
 
-  # test "should update video" do
-  #   patch :update, id: @video, video: { video_file: @video.video_file }
-  #   assert_redirected_to video_path(assigns(:video))
-  # end
-
-  # test "should destroy video" do
-  #   assert_difference('Video.count', -1) do
-  #     delete :destroy, id: @video
-  #   end
-
-  #   assert_redirected_to videos_path
-  # end
 end

@@ -1,26 +1,22 @@
-<%# Renders a partial which is used to create a new video %>
 <%= form_for(@video, :html => {:id=>"video_upload",
-              :role => "form",
-              :multipart => true}) do |f| %>
-<% if @video.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
+           :role => "form",
+           :multipart => true}) do |f| %>
+  <% if @video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
 
-    <ul>
-    <% @video.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
+      <ul>
+      <% @video.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.file_field :movie %>
+    <%= f.hidden_field :name %>
   </div>
-<% end %>
-
-<div class="field">
-  <%= f.file_field :movie %>
-  <%= f.hidden_field :name %>
-</div>
-<div class="actions">
-  <%= f.submit %>
-  <% button_text = "#{@video.new_record? ? "Create" : "Update"} Video" %>
-  <%#= submit_tag button_text, "data-loading-text"=>"Saving ..." %>
-</div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>
