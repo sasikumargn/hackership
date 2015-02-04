@@ -1,5 +1,6 @@
-<!-- <p id="notice"><%= notice %></p> -->
+<br/>
 <%= video_tag [@video.movie.url(:mp4), type: "video/mp4"],[@video.movie.url(:webm), type: "video/webm"], :size => "320x240", :controls => true %>
+<br/>
 <%= link_to 'Edit', edit_video_path(@video) %> |
-<%= link_to 'Back', videos_path %> |
-<%= link_to 'Destroy', @video, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Destroy', @video, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', videos_path %>
